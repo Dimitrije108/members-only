@@ -1,6 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('node:path');
+const { sessionInit } = require('./config/passport');
+const session = require('express-session');
+const passport = require('passport');
 const app = express();
 const indexRouter = require('./routes/indexRouter');
 const authRouter = require('./routes/authRouter');
@@ -11,6 +14,9 @@ app.set('view engine', 'ejs');
 // Setup assets (css, images, etc)
 const assetsPath = path.join(__dirname, 'public');
 app.use(express.static(assetsPath));
+// Passport setup
+app.use(sessionInit);
+app.use(passport.session());
 // Parse form data into req.body
 app.use(express.urlencoded({ extended: true }));
 

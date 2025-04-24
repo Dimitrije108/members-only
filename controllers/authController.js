@@ -1,12 +1,13 @@
 const asyncHandler = require('express-async-handler');
 const db = require('../db/queries');
+const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
 
 const alphaErr = 'must only contain letters.';
 const lengthErr = 'must be between 1 and 30 characters.';
 
-const validateUserRegistration = [
+const validateSignUp = [
 	body('firstName').trim()
 		.isAlpha().withMessage(`First name ${alphaErr}`)
 		.isLength({ min: 1, max: 30 }).withMessage(`First name ${lengthErr}`),
@@ -29,19 +30,25 @@ const validateUserRegistration = [
 		}),
 ];
 
-const validateUserLogin = [
+const validateLogIn = [
 	body('email').normalizeEmail()
 		.isEmail().withMessage('Email must be a valid email address.'),
 	body('password').trim()
 		.notEmpty().withMessage('Password cannot be empty.'),
 ];
 
-const createUserGet = (req, res) => {
+const validateMembership = [
+	body('code').trim().toLowerCase()
+		.isAlpha().withMessage(`Code ${alphaErr}`)
+		.equals('purple').withMessage('The code is incorrect. Try again.'),
+];
+
+const signUpGet = (req, res) => {
 	res.render('sign-up');
 };
 
-const createUserPost = [
-	validateUserRegistration, 
+const signUpPost = [
+	validateSignUp,
 	asyncHandler(async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
@@ -54,10 +61,56 @@ const createUserPost = [
 		const hashedPass = await bcrypt.hash(req.body.password, 10);
 		const admin = req.body.admin === 'on';
 		await db.addUser({ firstName, lastName, email, hashedPass, admin });
-		res.redirect('/');
+		res.redirect('/log-in');
+})];
+
+const logInGet = (req, res) => {
+	const message = req.session.messages;
+	req.session.messages = [];
+	res.render('log-in', { message });
+};
+
+const logInPost = [
+	validateLogIn,
+	asyncHandler(async (req, res, next) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).render('log-in', { 
+				errors: errors.array() 
+			});
+		};
+
+		return passport.authenticate('local', {
+			successRedirect: '/',
+			failureRedirect: '/auth/log-in',
+			failureMessage: true
+		})(req, res, next);
+})];
+
+const joinMembershipGet = (req, res) => {
+	// only display this to the registered/logged in users!
+	res.render('join-the-club');
+};
+
+const joinMembershipPost = [
+	validateMembership, 
+	asyncHandler(async (req, res) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).render('join-the-club', { 
+				errors: errors.array() 
+			});
+		};
+		
+		// Use session cookie to determine which user it is
+		res.redirect('/new-member');
 })];
 
 module.exports = {
-	createUserGet,
-	createUserPost,
+	signUpGet,
+	signUpPost,
+	logInGet,
+	logInPost,
+	joinMembershipGet,
+	joinMembershipPost,
 };
