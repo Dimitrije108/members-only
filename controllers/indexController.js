@@ -12,10 +12,27 @@ const validatePost = [
 
 const indexGet = asyncHandler(async (req, res) => {
 	const posts = await db.getAllPosts();
-	res.render('index', {
-		user: req.user,
-		posts
-	});
+
+	if (!req.user) {
+		res.render('index-guest', {
+			posts
+		});
+	} else if (req.user.admin) {
+		res.render('index-admin', {
+			user: req.user,
+			posts
+		});
+	} else if (req.user.member) {
+		res.render('index-member', {
+			user: req.user,
+			posts
+		});
+	} else {
+		res.render('index-user', {
+			user: req.user,
+			posts
+		});
+	}
 });
 
 const postGet = (req, res) => {

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Members only</title>
+		<link rel="stylesheet" href="/styles.css">
+	</head>
+	<body>
+		<h1>Wlcm</h1>
+		<p>Login or register to create posts!</p>
+		<a href="/auth/log-in">
+			<button>Log In</button>
+		</a>
+		<a href="/auth/sign-up">
+			<button>Register</button>
+		</a>
+		<a href="/auth/log-out">
+			<button>Log Out</button>
+		</a>
+		<% posts.forEach((post) => { %>
+			<div class="postCont">
+				<h2><%= post.title %></h2>
+				<p><%= post.text %></p>
+			</div>
+		<% }) %>
+	</body>
+</html>
