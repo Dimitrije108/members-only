@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/styles.css">
+	</head>
+	<body>
+		<form action="/post" method="POST">
+			<h2>Create a post</h2>
+			<div>
+				<label for="title">Title</label>
+				<input type="text" name="title" id="title">
+			</div>
+			<div>
+				<label for="body">Post message</label>
+				<textarea 
+					name="body" 
+					id="body" 
+					rows="5" 
+					cols="40" 
+					placeholder="Type your post message here..."
+				></textarea>
+			</div>
+			<button type="submit">Post!</button>
+		</form>
+	</body>
+</html>

@@ -10,6 +10,36 @@ async function addUser({ firstName, lastName, email, hashedPass, admin }) {
 	);
 };
 
+async function addPost({ title, body, userId }) {
+	await pool.query(`
+		INSERT INTO messages
+		(title, text, user_id)
+		VALUES ($1, $2, $3)
+		`, 
+		[title, body, userId]
+	);
+};
+
+async function getAllPosts() {
+	const { rows } = await pool.query(`
+		SELECT
+			messages.id,
+			title,
+			text,
+			added,
+			first_name,
+			last_name,
+			membership_status,
+			admin
+		FROM messages
+		INNER JOIN users 
+		ON messages.user_id = users.id
+	`);
+	return rows;
+};
+
 module.exports = {
 	addUser,
+	addPost,
+	getAllPosts,
 };

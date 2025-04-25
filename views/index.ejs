@@ -7,9 +7,25 @@
 		<link rel="stylesheet" href="/styles.css">
 	</head>
 	<body>
-		<% if (locals.user) { %>
-			<h1>Wlcm trvlr <%= `${user.first_name} ${user.last_name}` %></h1>
+		<% if (user) { %>
+			<h1>Wlcm <%= user.first_name %></h1>
+			<a href="/post">
+				<button>Create a new post!</button>
+			</a>
 			<a href="/auth/log-out">Log Out</a>
+			<% posts.forEach((post) => { %>
+				<div class="postCont">
+					<h2><%= post.title %>:</h2>
+					<p><%= post.text %></p>
+					<p><%= post.added %></p>
+					<% if (post.member) { %>
+						<p>Member</p>
+					<% } %>
+					<% if (post.admin) { %>
+						<p>Admin</p>
+					<% } %>
+				</div>
+			<% }) %>
 		<% } else { %>
 			<h1>Hello There!</h1>
 			<p>Please log-in or register to view posts.</p>
