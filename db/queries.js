@@ -20,6 +20,15 @@ async function addPost({ title, body, userId }) {
 	);
 };
 
+async function addMembership(userId) {
+	await pool.query(`
+		UPDATE users
+		SET member = true
+		WHERE users.id = $1
+		`, [userId]
+	);
+};
+
 async function getAllPosts() {
 	const { rows } = await pool.query(`
 		SELECT
@@ -29,7 +38,7 @@ async function getAllPosts() {
 			added,
 			first_name,
 			last_name,
-			membership_status,
+			member,
 			admin
 		FROM messages
 		INNER JOIN users 
@@ -41,5 +50,6 @@ async function getAllPosts() {
 module.exports = {
 	addUser,
 	addPost,
+	addMembership,
 	getAllPosts,
 };

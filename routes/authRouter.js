@@ -10,5 +10,6 @@ authRouter.post('/log-in', authController.logInPost);
 
 authRouter.get('/join-the-club', authController.joinMembershipGet);
 authRouter.post('/join-the-club', authController.joinMembershipPost);
+authRouter.get('/new-member', authController.newMemberGet);
 
 module.exports = authRouter;

@@ -61,7 +61,7 @@ const signUpPost = [
 		const hashedPass = await bcrypt.hash(req.body.password, 10);
 		const admin = req.body.admin === 'on';
 		await db.addUser({ firstName, lastName, email, hashedPass, admin });
-		res.redirect('/log-in');
+		res.redirect('/auth/log-in');
 })];
 
 const logInGet = (req, res) => {
@@ -88,8 +88,9 @@ const logInPost = [
 })];
 
 const joinMembershipGet = (req, res) => {
-	// only display this to the registered/logged in users!
-	res.render('join-the-club');
+	res.render('join-the-club', {
+		user: req.user
+	})
 };
 
 const joinMembershipPost = [
@@ -98,13 +99,21 @@ const joinMembershipPost = [
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(400).render('join-the-club', { 
+				user: req.user,
 				errors: errors.array() 
 			});
 		};
 		
-		// Use session cookie to determine which user it is
-		res.redirect('/new-member');
+		await db.addMembership(req.user.id);
+		res.redirect('/auth/new-member');
 })];
+
+
+const newMemberGet = (req, res) => {
+	res.render('new-member', {
+		user: req.user
+	})
+};
 
 module.exports = {
 	signUpGet,
@@ -113,4 +122,5 @@ module.exports = {
 	logInPost,
 	joinMembershipGet,
 	joinMembershipPost,
+	newMemberGet,
 };
