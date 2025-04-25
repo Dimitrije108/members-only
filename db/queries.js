@@ -20,6 +20,14 @@ async function addPost({ title, body, userId }) {
 	);
 };
 
+async function delPost(postId) {
+	await pool.query(`
+		DELETE FROM messages 
+		WHERE messages.id = $1
+		`, [postId]
+	);
+};
+
 async function addMembership(userId) {
 	await pool.query(`
 		UPDATE users
@@ -50,6 +58,7 @@ async function getAllPosts() {
 module.exports = {
 	addUser,
 	addPost,
+	delPost,
 	addMembership,
 	getAllPosts,
 };

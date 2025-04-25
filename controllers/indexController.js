@@ -39,8 +39,15 @@ const postPost = [
 	})
 ];
 
+const postDel = asyncHandler(async (req, res) => {
+	const postId = req.params.postId;
+	await db.delPost(postId);
+	res.redirect('/');
+});
+
 module.exports = {
 	indexGet,
 	postGet,
 	postPost,
+	postDel,
 };

@@ -29,6 +29,11 @@
 					<% if (post.admin) { %>
 						<p>Admin</p>
 					<% } %>
+					<% if (user.admin) { %>
+						<a href="/<%= post.id %>/del-post">
+							<button>Delete</button>
+						</a>
+					<% } %>
 				</div>
 			<% }) %>
 		<% } else { %>
