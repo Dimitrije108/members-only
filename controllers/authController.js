@@ -87,6 +87,15 @@ const logInPost = [
 		})(req, res, next);
 })];
 
+const logOutGet = (req, res, next) => {
+	req.logout((err) => {
+		if (err) {
+			return next(err);
+		}
+		res.redirect('/');
+	})
+};
+
 const joinMembershipGet = (req, res) => {
 	res.render('join-the-club', {
 		user: req.user
@@ -108,7 +117,6 @@ const joinMembershipPost = [
 		res.redirect('/auth/new-member');
 })];
 
-
 const newMemberGet = (req, res) => {
 	res.render('new-member', {
 		user: req.user
@@ -120,6 +128,7 @@ module.exports = {
 	signUpPost,
 	logInGet,
 	logInPost,
+	logOutGet,
 	joinMembershipGet,
 	joinMembershipPost,
 	newMemberGet,

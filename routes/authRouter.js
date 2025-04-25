@@ -7,6 +7,7 @@ authRouter.post('/sign-up', authController.signUpPost);
 
 authRouter.get('/log-in', authController.logInGet);
 authRouter.post('/log-in', authController.logInPost);
+authRouter.get('/log-out', authController.logOutGet);
 
 authRouter.get('/join-the-club', authController.joinMembershipGet);
 authRouter.post('/join-the-club', authController.joinMembershipPost);
