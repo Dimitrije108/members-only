@@ -7,14 +7,21 @@
 		<link rel="stylesheet" href="/styles.css">
 	</head>
 	<body>
-		<% if (user && user.member) { %>
-			<h1>Congrats!</h1>
-			<p>You've just become our member! We hope you enjoy your stay.</p>
-		<% } else { %>
-			<p>You shouldn't be here...</p>
-			<a href="/">
-				<button>Go Home</button>
-			</a>
-		<% } %>
+		<div class="pageWrapper">
+			<div class="pageCont">
+				<% if (user && user.member) { %>
+					<h1 class="heading">Congrats!</h1>
+					<p>You've just become our member! We hope you enjoy your stay.</p>
+					<a href="/">
+						<button>Go Home</button>
+					</a>
+				<% } else { %>
+					<p>You shouldn't be here...</p>
+					<a href="/">
+						<button>Go Home</button>
+					</a>
+				<% } %>
+			</div>
+		</div>
 	</body>
 </html>

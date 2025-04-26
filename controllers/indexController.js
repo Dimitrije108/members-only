@@ -44,7 +44,7 @@ const postPost = [
 	asyncHandler(async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
-			res.status(400).render('post', {
+			return res.status(400).render('post', {
 				errors: errors.array()
 			});
 		};

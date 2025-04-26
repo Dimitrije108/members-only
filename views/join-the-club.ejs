@@ -2,32 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join The Club</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <h1>Join The Club</h1>
-  <% if (user && user.member) { %>
-    <p>You're already a member!</p>
-    <a href="/">
-      <button>Go Home</button>
-    </a>
-  <% } else if (user) { %>
-    <p>Hmm, the color of the lightsaber, yes, the answer it is. Mace Windu, it comes from.</p>
-    <form action="/auth/join-the-club" method="POST">
-      <label for="code">Code</label>
-      <input id="code" name="code" type="text" required />
-      <button type="submit">Verify</button>
-    </form>
-    <!-- print out errors if present -->
-    <%- include('partials/validationErr.ejs') %>
-  <% } else { %>
-    <p>You need to be a registered user to apply for membership.</p>
-    <a href="/auth/log-in">
-      <button>Log In</button>
-    </a>
-    <a href="/auth/sign-up">
-      <button>Register</button>
-    </a>
-  <% } %>
+  <div class="pageWrapper">
+    <div class="pageCont">
+      <h1 class="heading">Join The Club</h1>
+      <% if (user && user.member) { %>
+        <p>You're already a member!</p>
+        <a href="/">
+          <button>Go Home</button>
+        </a>
+      <% } else if (user) { %>
+        <p>Hmm, the color of the lightsaber, yes, the answer it is. Mace Windu, it comes from.</p>
+        <form 
+          action="/auth/join-the-club" 
+          method="POST"
+          class="membershipForm"
+        >
+          <label for="code">Code</label>
+          <input id="code" name="code" type="text" required />
+          <button type="submit">Verify</button>
+        </form>
+        <!-- print out errors if present -->
+        <%- include('partials/validationErr.ejs') %>
+      <% } else { %>
+        <p>You need to be a registered user to apply for membership.</p>
+        <a href="/auth/log-in">
+          <button>Log In</button>
+        </a>
+        <a href="/auth/sign-up">
+          <button>Register</button>
+        </a>
+      <% } %>
+    </div>
+  </div>
 </body>
 </html>

@@ -15,6 +15,7 @@ button {
 	margin: 4px 0;
 	padding: 6px 8px;
 
+	font-weight: 600;
 	background-color: white;
 	border: 1px solid black;
 	border-radius: 0;
@@ -34,14 +35,14 @@ a {
   text-decoration: none;
 }
 
-.indexPageWrapper {
+.pageWrapper {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
 
-.indexPageCont {
+.pageCont {
 	padding: 1rem;
 }
 
@@ -125,4 +126,45 @@ a {
 
 .postDate {
 	font-size: 0.8rem;
+}
+
+.heading {
+	margin-bottom: 1rem;
+	display: flex;
+	justify-content: center;
+}
+
+.membershipForm {
+	margin-top: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.membershipForm > label {
+	font-weight: 600;
+}
+
+.membershipForm > input {
+	margin: 0.5rem;
+}
+
+.inputCont {
+	margin: 1rem 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.postBtn,
+.loginFormBtn,
+.registerBtn {
+	width: 100%;
+}
+
+.registerBtn {
+	margin-top: 1rem;
+}
+
+.loginText {
+	margin-right: 1rem;
 }
