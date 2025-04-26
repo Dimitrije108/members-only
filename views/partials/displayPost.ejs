@@ -1,0 +1,19 @@
+<div class="postCont">
+	<h2><%= post.title %></h2>
+	<p><%= post.text %></p>
+	<% if (user?.member || user?.admin) { %>
+		<p><%= `${post.first_name} ${post.last_name}` %></p>
+		<% if (post.member) { %>
+			<p>(Member)</p>
+		<% } %>
+		<% if (post.admin) { %>
+			<p>(Admin)</p>
+		<% } %>
+		<p><%= post.added %></p>
+	<% } %>
+	<% if (user?.admin) { %>
+		<a href="/<%= post.id %>/del-post">
+			<button class="delBtn">Delete</button>
+		</a>
+	<% } %>
+</div>
