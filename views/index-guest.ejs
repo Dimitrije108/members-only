@@ -7,22 +7,24 @@
 		<link rel="stylesheet" href="/styles.css">
 	</head>
 	<body>
-		<h1>Wlcm</h1>
-		<p>Login or register to create posts!</p>
-		<a href="/auth/log-in">
-			<button>Log In</button>
-		</a>
-		<a href="/auth/sign-up">
-			<button>Register</button>
-		</a>
-		<a href="/auth/log-out">
-			<button>Log Out</button>
-		</a>
-		<% posts.forEach((post) => { %>
-			<div class="postCont">
-				<h2><%= post.title %></h2>
-				<p><%= post.text %></p>
+		<div class="indexPageWrapper">
+			<div class="indexPageCont">
+				<h1 class="welcome">Wlcm</h1>
+				<div class="authCont">
+					<p>Login or register to create posts!</p>
+					<div>
+						<a href="/auth/log-in">
+							<button>Log In</button>
+						</a>
+						<a href="/auth/sign-up">
+							<button>Register</button>
+						</a>
+					</div>
+				</div>
+				<% posts.forEach((post) => { %>
+					<%- include('partials/displayPost', { post, user: null }) %>
+				<% }) %>
 			</div>
-		<% }) %>
+		</div>
 	</body>
 </html>

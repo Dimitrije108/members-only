@@ -12,7 +12,7 @@ const validatePost = [
 
 const indexGet = asyncHandler(async (req, res) => {
 	const posts = await db.getAllPosts();
-
+	
 	if (!req.user) {
 		res.render('index-guest', {
 			posts

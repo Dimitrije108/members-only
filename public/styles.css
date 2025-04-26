@@ -1,3 +1,128 @@
 body {
-	color: rgb(116, 82, 82);
+	margin: 0;
+	padding: 0;
+	color: rgb(0, 0, 0);
+	background-color: rgb(197, 186, 218);
+	font-family: Arial, Verdana, Tahoma;
+}
+
+h1, h2, p {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	margin: 4px 0;
+	padding: 6px 8px;
+
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 0;
+	box-shadow: 1px 1px 0px 0px rgba(0,0,0,1);
+	transition: all 0.3s;
+
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: rgb(141, 247, 173);
+}
+
+a {
+	display: inline-block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.indexPageWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.indexPageCont {
+	padding: 1rem;
+}
+
+.userWrapper {
+	margin-bottom: 1rem;
+	display: flex;
+}
+
+.userCont {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.welcome {
+	margin-bottom: 1rem;
+	display: flex;
+	justify-content: center;
+}
+
+.userStatus {
+	align-self: center;
+}
+
+.authCont {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.membershipCont {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.delBtn:hover, 
+.logoutBtn:hover {
+	background-color: rgb(247, 141, 190);
+}
+
+.postCont {
+	margin: 1rem 0;
+	padding: 1rem;
+	max-width: 600px;
+
+	background-color: rgb(233, 231, 215);
+	border: 1px solid rgb(0, 0, 0);
+	box-shadow: 6px 6px 0px 1px rgba(0,0,0,1);
+}
+
+.postTitle {
+	margin-bottom: 1rem;
+	font-size: 1.2rem;
+}
+
+.postText {
+	margin-bottom: 0.5rem;
+}
+
+.postAuthorWrapper {
+	margin-bottom: 0.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.postAuthorCont {
+	display: flex;
+	align-items: center;
+}
+
+.postAuthor {
+	margin-right: 4px;
+	font-size: 1rem;
+}
+
+.postAuth {
+	font-size: 0.8rem;
+}
+
+.postDate {
+	font-size: 0.8rem;
 }

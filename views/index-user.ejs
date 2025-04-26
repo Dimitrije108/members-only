@@ -7,28 +7,29 @@
 		<link rel="stylesheet" href="/styles.css">
 	</head>
 	<body>
-		<h1>Wlcm <%= user.first_name %></h1>
-		<a href="/post">
-			<button>Create a new post!</button>
-		</a>
-		<p>Only members can see additional post info.</p>
-		<a href="/auth/join-the-club">
-			<button>Become a member!</button>
-		</a>
-		<a href="/auth/log-out">
-			<button>Log Out</button>
-		</a>
-		<% posts.forEach((post) => { %>
-			<div class="postCont">
-				<h2><%= post.title %></h2>
-				<p><%= post.text %></p>
-				<% if (post.member) { %>
-					<p>Member</p>
-				<% } %>
-				<% if (post.admin) { %>
-					<p>Admin</p>
-				<% } %>
+		<div class="indexPageWrapper">
+			<div class="indexPageCont">
+				<div class="userWrapper">
+					<div class="userCont">
+						<h1>Wlcm <%= user.first_name %></h1>
+					</div>
+					<a href="/auth/log-out">
+						<button class="logoutBtn">Log out</button>
+					</a>
+				</div>
+				<div class="membershipCont">
+					<p>Only members can see additional post info.</p>
+					<a href="/auth/join-the-club">
+						<button>Become a member!</button>
+					</a>
+				</div>
+				<a href="/post">
+					<button class="newPostBtn">Create a new post!</button>
+				</a>
+				<% posts.forEach((post) => { %>
+					<%- include('partials/displayPost', { post, user }) %>
+				<% }) %>
 			</div>
-		<% }) %>
+		</div>
 	</body>
 </html>
