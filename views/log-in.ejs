@@ -19,14 +19,14 @@
           <label for="password">Password</label>
           <input id="password" name="password" type="password" />
         </div>
+        <!-- Validation errors -->
+        <%- include('partials/validationErr.ejs') %>
+        <!-- Authentication error -->
+        <% if (message && message.length > 0) { %>
+          <div class="error"><%= message[0] %></div>
+        <% } %>
         <button type="submit" class="loginFormBtn">Log In</button>
       </form>
-      <!-- Validation errors -->
-      <%- include('partials/validationErr.ejs') %>
-      <!-- Authentication error -->
-      <% if (message && message.length > 0) { %>
-        <div class="error"><%= message[0] %></div>
-      <% } %>
     </div>
   </div>
 </body>

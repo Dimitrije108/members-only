@@ -39,10 +39,10 @@
         </div>
         <label for="admin">Admin</label>
         <input type="checkbox" id="admin" name="admin" />
+        <!-- print out errors if present -->
+        <%- include('partials/validationErr.ejs') %>
         <button type="submit" class="registerBtn">Sign Up</button>
       </form>
-      <!-- print out errors if present -->
-      <%- include('partials/validationErr.ejs') %>
     </div>
   </div>
 </body>
